@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "repos": "Repos",
+    "prs": "PRs",
+    "issues": "Issues",
+    "settings": "Settings"
+  },
+  "login": {
+    "title": "Se connecter",
+    "subtitle": "Renseigne ton instance Forgejo et un token personnel.",
+    "instance_label": "URL de l'instance",
+    "instance_placeholder": "https://codeberg.org",
+    "token_label": "Personal Access Token",
+    "token_placeholder": "ghp_xxx ou token Forgejo",
+    "token_help": "Génère un token avec les scopes read:repository et read:user.",
+    "submit": "Se connecter",
+    "submitting": "Connexion…",
+    "show_token": "Afficher le token",
+    "hide_token": "Masquer le token",
+    "errors": {
+      "invalid_url": "URL invalide.",
+      "missing_token": "Token requis.",
+      "auth_failed": "Authentification échouée. Vérifie l'URL et le token.",
+      "network": "Erreur réseau. Vérifie ta connexion."
+    }
+  },
+  "repos": {
+    "title": "Repos",
+    "subtitle_active": "{count} actifs · dernière activité {time}",
+    "subtitle_empty": "Aucun repo",
+    "filter_active": "Actifs",
+    "empty": "Aucun repo trouvé."
+  },
+  "time": {
+    "now": "à l'instant",
+    "minutes": "il y a {n}min",
+    "hours": "il y a {n}h",
+    "days": "il y a {n}j",
+    "weeks": "il y a {n}sem",
+    "months": "il y a {n}mois"
+  },
+  "common": {
+    "retry": "Réessayer",
+    "loading": "Chargement…",
+    "logout": "Se déconnecter"
+  }
+}

@@ -1,0 +1,24 @@
+html[data-theme='default'] {
+  --c-bg-canvas: #0f1014;
+  --c-bg-surface: #161820;
+  --c-bg-elevated: #1a1c22;
+  --c-bg-border: #1f2128;
+
+  --c-text-primary: #e8e9ed;
+  --c-text-secondary: #9ca0ac;
+  --c-text-tertiary: #6b6f7a;
+
+  --c-accent-500: #f97316;
+  --c-accent-600: #ea580c;
+  --c-accent-bg: #2a1f12;
+
+  --c-success: #22c55e;
+  --c-danger: #ef4444;
+  --c-warning: #f59e0b;
+  --c-info: #3b82f6;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  color-scheme: dark;
+}
