@@ -1,0 +1,26 @@
+/* Placeholder — brutalist theme to be implemented later.
+   Minimal variables so the app does not break if this theme is selected. */
+html[data-theme='brutalist'] {
+  --c-bg-canvas: #0d0f0c;
+  --c-bg-surface: #131512;
+  --c-bg-elevated: #1a1d18;
+  --c-bg-border: #262922;
+
+  --c-text-primary: #e6e4d9;
+  --c-text-secondary: #9a988c;
+  --c-text-tertiary: #6a685e;
+
+  --c-accent-500: #f0b072;
+  --c-accent-600: #d99955;
+  --c-accent-bg: #2a2113;
+
+  --c-success: #7ab87a;
+  --c-danger: #c87070;
+  --c-warning: #d9a85c;
+  --c-info: #6a9ec7;
+
+  --font-sans: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  color-scheme: dark;
+}

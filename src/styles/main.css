@@ -1,0 +1,62 @@
+@import './themes/default.css';
+@import './themes/light.css';
+@import './themes/brutalist.css';
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  background: var(--c-bg-canvas);
+  color: var(--c-text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  overscroll-behavior-y: contain;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+p {
+  margin: 0;
+}

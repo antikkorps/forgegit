@@ -1,0 +1,24 @@
+html[data-theme='light'] {
+  --c-bg-canvas: #fafafa;
+  --c-bg-surface: #ffffff;
+  --c-bg-elevated: #f3f4f6;
+  --c-bg-border: #e5e7eb;
+
+  --c-text-primary: #111827;
+  --c-text-secondary: #4b5563;
+  --c-text-tertiary: #9ca3af;
+
+  --c-accent-500: #ea580c;
+  --c-accent-600: #c2410c;
+  --c-accent-bg: #ffedd5;
+
+  --c-success: #16a34a;
+  --c-danger: #dc2626;
+  --c-warning: #d97706;
+  --c-info: #2563eb;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  color-scheme: light;
+}
