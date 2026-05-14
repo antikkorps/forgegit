@@ -1,5 +1,14 @@
 import { ofetch, type $Fetch, FetchError } from 'ofetch'
-import type { ForgejoRepo, ForgejoUser, ApiError, Result } from '@/types/forgejo'
+import type {
+  ForgejoRepo,
+  ForgejoUser,
+  ForgejoBranch,
+  ForgejoCommit,
+  ForgejoLanguages,
+  ForgejoContent,
+  ApiError,
+  Result,
+} from '@/types/forgejo'
 
 export interface ForgejoApiOptions {
   baseUrl: string
@@ -11,10 +20,21 @@ export interface ListReposParams {
   limit?: number
 }
 
+export interface ListCommitsParams {
+  sha?: string
+  page?: number
+  limit?: number
+}
+
 export interface ForgejoApi {
   getCurrentUser(): Promise<Result<ForgejoUser>>
   listMyRepos(params?: ListReposParams): Promise<Result<ForgejoRepo[]>>
   searchRepos(query: string, params?: ListReposParams): Promise<Result<ForgejoRepo[]>>
+  getRepo(owner: string, repo: string): Promise<Result<ForgejoRepo>>
+  listBranches(owner: string, repo: string, params?: ListReposParams): Promise<Result<ForgejoBranch[]>>
+  listCommits(owner: string, repo: string, params?: ListCommitsParams): Promise<Result<ForgejoCommit[]>>
+  getReadme(owner: string, repo: string, ref?: string): Promise<Result<ForgejoContent>>
+  getLanguages(owner: string, repo: string): Promise<Result<ForgejoLanguages>>
 }
 
 function normalizeBaseUrl(url: string): string {
@@ -85,6 +105,37 @@ export function createForgejoApi(opts: ForgejoApiOptions): ForgejoApi {
           query: { q: query, page: params.page ?? 1, limit: params.limit ?? 50 },
         }).then((r) => r.data),
       )
+    },
+    getRepo(owner, repo) {
+      return wrap(() => client<ForgejoRepo>(`/repos/${owner}/${repo}`))
+    },
+    listBranches(owner, repo, params = {}) {
+      return wrap(() =>
+        client<ForgejoBranch[]>(`/repos/${owner}/${repo}/branches`, {
+          query: { page: params.page ?? 1, limit: params.limit ?? 50 },
+        }),
+      )
+    },
+    listCommits(owner, repo, params = {}) {
+      return wrap(() =>
+        client<ForgejoCommit[]>(`/repos/${owner}/${repo}/commits`, {
+          query: {
+            ...(params.sha ? { sha: params.sha } : {}),
+            page: params.page ?? 1,
+            limit: params.limit ?? 20,
+          },
+        }),
+      )
+    },
+    getReadme(owner, repo, ref) {
+      return wrap(() =>
+        client<ForgejoContent>(`/repos/${owner}/${repo}/readme`, {
+          query: ref ? { ref } : {},
+        }),
+      )
+    },
+    getLanguages(owner, repo) {
+      return wrap(() => client<ForgejoLanguages>(`/repos/${owner}/${repo}/languages`))
     },
   }
 }

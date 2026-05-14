@@ -39,6 +39,46 @@ export interface ForgejoRepo {
   html_url: string
 }
 
+export interface ForgejoBranch {
+  name: string
+  commit: {
+    id: string
+    message: string
+    timestamp: string
+  }
+  protected: boolean
+}
+
+export interface ForgejoCommitAuthor {
+  name: string
+  email: string
+  username?: string
+}
+
+export interface ForgejoCommit {
+  sha: string
+  html_url: string
+  commit: {
+    message: string
+    author: ForgejoCommitAuthor & { date: string }
+    committer: ForgejoCommitAuthor & { date: string }
+  }
+  author: ForgejoUser | null
+  committer: ForgejoUser | null
+  created: string
+}
+
+// Forgejo /repos/{owner}/{repo}/languages returns a map of { language: bytes }.
+export type ForgejoLanguages = Record<string, number>
+
+// /repos/{owner}/{repo}/readme — base64 ContentsResponse.
+export interface ForgejoContent {
+  name: string
+  path: string
+  content: string | null
+  encoding: 'base64' | string | null
+}
+
 export interface ApiError {
   status: number
   message: string

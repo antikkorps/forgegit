@@ -116,12 +116,17 @@ onMounted(() => {
         v-else
         class="flex flex-col gap-1.5"
       >
-        <RepoCard
+        <router-link
           v-for="(repo, index) in repos.sortedByActivity"
           :key="repo.id"
-          :repo="repo"
-          :active="index === 0"
-        />
+          :to="{ name: 'repo-detail', params: { owner: repo.owner.login, repo: repo.name } }"
+          class="block no-underline text-inherit active:opacity-80"
+        >
+          <RepoCard
+            :repo="repo"
+            :active="index === 0"
+          />
+        </router-link>
       </div>
     </div>
   </div>

@@ -22,6 +22,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/RepoListView.vue'),
       },
       {
+        path: 'repos/:owner/:repo',
+        name: 'repo-detail',
+        component: () => import('@/views/RepoDetailView.vue'),
+        props: true,
+      },
+      {
         path: 'prs',
         name: 'prs',
         component: () => import('@/views/PullRequestListView.vue'),

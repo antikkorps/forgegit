@@ -23,7 +23,10 @@ Ce que la v1 a livré et ce qui reste. Mis à jour itération par itération.
 
 ### Détails et navigation
 
-- [ ] `RepoDetailView` (README, branches, commits récents, langues breakdown)
+- [x] `RepoDetailView` (header repo + breakdown langues + branches + commits récents + README brut) — navigation depuis `RepoListView`
+- [ ] Rendu Markdown du README (actuellement affichage texte brut en mono — il faudra une lib type `marked` + sanitizer)
+- [ ] Liens cliquables dans le README (issues `#123`, mentions `@user`, URLs)
+- [ ] Voir toutes les branches (actuellement limité à 5 affichées sur N)
 - [ ] `IssueListView` réelle (filtres : open/closed, assignee, label)
 - [ ] `IssueDetailView` (markdown render, commentaires, actions : close, label, assign)
 - [ ] `PullRequestListView` réelle (filtres : open/draft/closed, assignée à moi, review pending)

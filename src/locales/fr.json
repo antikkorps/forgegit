@@ -42,6 +42,28 @@
   "common": {
     "retry": "Réessayer",
     "loading": "Chargement…",
-    "logout": "Se déconnecter"
+    "logout": "Se déconnecter",
+    "back": "Retour"
+  },
+  "repo_detail": {
+    "sections": {
+      "languages": "Langues",
+      "branches": "Branches",
+      "commits": "Commits récents",
+      "readme": "README"
+    },
+    "badges": {
+      "private": "privé",
+      "archived": "archivé",
+      "protected": "protégée"
+    },
+    "empty": {
+      "branches": "Aucune branche.",
+      "commits": "Aucun commit.",
+      "readme": "Pas de README."
+    },
+    "errors": {
+      "not_authenticated": "Non authentifié."
+    }
   }
 }

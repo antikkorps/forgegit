@@ -68,4 +68,57 @@ describe('createForgejoApi', () => {
     expect(u.searchParams.get('page')).toBe('2')
     expect(u.searchParams.get('limit')).toBe('20')
   })
+
+  it('getRepo targets /repos/{owner}/{repo}', async () => {
+    mockFetchOnce(200, { id: 1, name: 'anvil', full_name: 'franck/anvil' })
+    const api = createForgejoApi({ baseUrl: 'https://git.fvienot.link', token: 'tok' })
+
+    const res = await api.getRepo('franck', 'anvil')
+
+    expect(res.ok).toBe(true)
+    const u = lastFetchUrl()
+    expect(u.pathname).toBe('/__forge/git.fvienot.link/api/v1/repos/franck/anvil')
+  })
+
+  it('listBranches and listCommits hit the right paths with query params', async () => {
+    mockFetchOnce(200, [])
+    const api = createForgejoApi({ baseUrl: 'https://codeberg.org', token: 'tok' })
+
+    await api.listBranches('owner', 'repo', { page: 1, limit: 50 })
+    let u = lastFetchUrl()
+    expect(u.pathname).toBe('/__forge/codeberg.org/api/v1/repos/owner/repo/branches')
+    expect(u.searchParams.get('limit')).toBe('50')
+
+    mockFetchOnce(200, [])
+    await api.listCommits('owner', 'repo', { sha: 'main', limit: 5 })
+    u = lastFetchUrl()
+    expect(u.pathname).toBe('/__forge/codeberg.org/api/v1/repos/owner/repo/commits')
+    expect(u.searchParams.get('sha')).toBe('main')
+    expect(u.searchParams.get('limit')).toBe('5')
+  })
+
+  it('getReadme passes ref when provided and returns base64 content', async () => {
+    mockFetchOnce(200, { name: 'README.md', path: 'README.md', content: 'aGVsbG8=', encoding: 'base64' })
+    const api = createForgejoApi({ baseUrl: 'https://codeberg.org', token: 'tok' })
+
+    const res = await api.getReadme('owner', 'repo', 'develop')
+
+    expect(res.ok).toBe(true)
+    const u = lastFetchUrl()
+    expect(u.pathname).toBe('/__forge/codeberg.org/api/v1/repos/owner/repo/readme')
+    expect(u.searchParams.get('ref')).toBe('develop')
+    if (res.ok) expect(res.data.content).toBe('aGVsbG8=')
+  })
+
+  it('getLanguages returns the language map', async () => {
+    mockFetchOnce(200, { TypeScript: 1200, Vue: 800 })
+    const api = createForgejoApi({ baseUrl: 'https://codeberg.org', token: 'tok' })
+
+    const res = await api.getLanguages('owner', 'repo')
+
+    expect(res.ok).toBe(true)
+    const u = lastFetchUrl()
+    expect(u.pathname).toBe('/__forge/codeberg.org/api/v1/repos/owner/repo/languages')
+    if (res.ok) expect(res.data.TypeScript).toBe(1200)
+  })
 })
